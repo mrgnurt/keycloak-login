@@ -21,8 +21,8 @@ public class KeycloakProvider {
     public String realm;
     @Value("${keycloak.resource}")
     public String clientID;
-    @Value("${keycloak.credentials.secret}")
-    public String clientSecret;
+//    @Value("${keycloak.credentials.secret}")
+//    public String clientSecret;
 
     private static Keycloak keycloak = null;
 
@@ -36,7 +36,7 @@ public class KeycloakProvider {
                     .realm(realm)
                     .serverUrl(serverURL)
                     .clientId(clientID)
-                    .clientSecret(clientSecret)
+//                    .clientSecret(clientSecret)
                     .grantType(OAuth2Constants.CLIENT_CREDENTIALS)
                     .build();
         }
@@ -49,7 +49,7 @@ public class KeycloakProvider {
                 .realm(realm) //
                 .serverUrl(serverURL)//
                 .clientId(clientID) //
-                .clientSecret(clientSecret) //
+//                .clientSecret(clientSecret) //
                 .username(username) //
                 .password(password);
     }
@@ -59,7 +59,7 @@ public class KeycloakProvider {
         return Unirest.post(url)
                 .header("Content-Type", "application/x-www-form-urlencoded")
                 .field("client_id", clientID)
-                .field("client_secret", clientSecret)
+//                .field("client_secret", clientSecret)
                 .field("refresh_token", refreshToken)
                 .field("grant_type", "refresh_token")
                 .asJson().getBody();
